@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, chat, users
+from app.api import auth, chat, user
 
 app = FastAPI(title="Linkaura API")
 
@@ -14,9 +14,9 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(auth.router)
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(chat.router)
-app.include_router(users.router)
+app.include_router(user.router)
 
 @app.get("/")
 async def root():

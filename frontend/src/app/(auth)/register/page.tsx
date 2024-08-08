@@ -16,9 +16,14 @@ export default function RegisterPage() {
     e.preventDefault();
     try {
       await signUp(email, password);
+      // No need to call backend login endpoint
       router.push('/chat');
     } catch (err) {
-      setError('Failed to create an account. Please try again.');
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to create an account. Please try again.');
+      }
     }
   };
 

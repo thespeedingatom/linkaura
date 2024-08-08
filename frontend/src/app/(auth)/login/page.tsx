@@ -16,6 +16,7 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       await signIn(email, password);
+      // No need to call backend login endpoint
       router.push('/chat');
     } catch (err) {
       setError('Failed to log in. Please check your credentials.');
